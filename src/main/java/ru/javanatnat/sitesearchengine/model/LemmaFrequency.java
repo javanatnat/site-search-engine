@@ -4,32 +4,30 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("t_site_lemma")
-public class SiteLemma {
+@Table("t_lemma_frequency")
+public class LemmaFrequency {
     @Id
     private final Long id;
-    private final Long siteId;
     private final String lemma;
-    private final Integer frequency;
+    private Integer frequency;
 
     @PersistenceConstructor
-    public SiteLemma(Long id, Long siteId, String lemma, Integer frequency) {
+    public LemmaFrequency(Long id, String lemma, Integer frequency) {
         this.id = id;
-        this.siteId = siteId;
         this.lemma = lemma;
         this.frequency = frequency;
     }
 
-    public SiteLemma(Long siteId, String lemma, Integer frequency) {
-        this(null, siteId, lemma, frequency);
+    public LemmaFrequency(String lemma, Integer frequency) {
+        this(null, lemma, frequency);
+    }
+
+    public LemmaFrequency(String lemma) {
+        this(null, lemma, 1);
     }
 
     public Long getId() {
         return id;
-    }
-
-    public Long getSiteId() {
-        return siteId;
     }
 
     public String getLemma() {
@@ -40,11 +38,14 @@ public class SiteLemma {
         return frequency;
     }
 
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
     @Override
     public String toString() {
         return "Lemma{" +
                 "id=" + id +
-                ", siteId=" + siteId +
                 ", lemma='" + lemma + '\'' +
                 ", frequency=" + frequency +
                 '}';
@@ -56,21 +57,15 @@ public class SiteLemma {
             return true;
         }
 
-        if (! (o instanceof SiteLemma siteLemma)) {
+        if (! (o instanceof LemmaFrequency lemmaFrequency)) {
             return false;
         }
 
-        if (!siteId.equals(siteLemma.siteId)) {
-            return false;
-        }
-
-        return lemma.equals(siteLemma.lemma);
+        return lemma.equals(lemmaFrequency.lemma);
     }
 
     @Override
     public int hashCode() {
-        int result = siteId.hashCode();
-        result = 31 * result + lemma.hashCode();
-        return result;
+        return lemma.hashCode();
     }
 }

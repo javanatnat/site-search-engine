@@ -11,14 +11,14 @@ import java.time.format.DateTimeFormatter;
 public class Site {
     @Id
     private final Long id;
-    private final SiteStatusType status;
-    private final LocalDateTime statusTime;
-    private final String lastError;
     private final String url;
     private final String name;
+    private SiteStatus status;
+    private LocalDateTime statusTime;
+    private String lastError;
 
     @PersistenceConstructor
-    public Site(Long id, SiteStatusType status, LocalDateTime statusTime,
+    public Site(Long id, SiteStatus status, LocalDateTime statusTime,
                 String lastError, String url, String name) {
         this.id = id;
         this.status = status;
@@ -28,7 +28,7 @@ public class Site {
         this.name = name;
     }
 
-    public Site(SiteStatusType status, LocalDateTime statusTime,
+    public Site(SiteStatus status, LocalDateTime statusTime,
                 String lastError, String url, String name) {
         this(null, status, statusTime, lastError, url, name);
     }
@@ -37,7 +37,7 @@ public class Site {
         return id;
     }
 
-    public SiteStatusType getStatus() {
+    public SiteStatus getStatus() {
         return status;
     }
 
@@ -55,6 +55,18 @@ public class Site {
 
     public String getName() {
         return name;
+    }
+
+    public void setStatus(SiteStatus status) {
+        this.status = status;
+    }
+
+    public void setStatusTime(LocalDateTime statusTime) {
+        this.statusTime = statusTime;
+    }
+
+    public void setLastError(String lastError) {
+        this.lastError = lastError;
     }
 
     @Override
@@ -85,5 +97,13 @@ public class Site {
     @Override
     public int hashCode() {
         return url.hashCode();
+    }
+
+    public boolean siteIsIndexed() {
+        return status == SiteStatus.INDEXED;
+    }
+
+    public boolean siteIsNotIndexed() {
+        return !siteIsIndexed();
     }
 }

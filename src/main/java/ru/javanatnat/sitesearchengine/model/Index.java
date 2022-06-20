@@ -13,7 +13,7 @@ public class Index {
     private final Long pageId;
     private final Long fieldId;
     private final Long lemmaId;
-    private final BigDecimal indexRank;
+    private BigDecimal indexRank;
 
     @PersistenceConstructor
     public Index(Long id, Long pageId, Long fieldId, Long lemmaId, BigDecimal indexRank) {
@@ -46,6 +46,10 @@ public class Index {
 
     public BigDecimal getIndexRank() {
         return indexRank;
+    }
+
+    public void setIndexRank(BigDecimal indexRank) {
+        this.indexRank = indexRank;
     }
 
     @Override

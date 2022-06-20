@@ -21,6 +21,7 @@ dependencyManagement {
 
 dependencies {
     implementation("ch.qos.logback:logback-classic")
+    implementation("org.jsoup:jsoup:1.15.1")
     implementation("org.flywaydb:flyway-core")
     implementation("org.postgresql:postgresql")
 

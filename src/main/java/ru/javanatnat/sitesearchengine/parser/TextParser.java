@@ -1,11 +1,13 @@
 package ru.javanatnat.sitesearchengine.parser;
 
+import org.springframework.stereotype.Component;
 import ru.javanatnat.sitesearchengine.luceneanalyze.CustomEnglishAnalyzer;
 import ru.javanatnat.sitesearchengine.luceneanalyze.CustomRussianAnalyzer;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class TextParser {
     private final List<LangParser> parsers;
 

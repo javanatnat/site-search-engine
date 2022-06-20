@@ -4,14 +4,18 @@ spring:
     username: usr
     password: pwd
 
-userAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15
+application:
+  sites:
+    -
+      url: https://lenta.ru
+      name: Lenta.ru
+    -
+      url: https://skillbox.ru
+      name: Skillbox
 
-sites:
-  - url: https://www.lenta.ru
-    name: Lenta.ru
-  - url: https://www.skillbox.ru
-    name: Skillbox
+#logging:
+#  level:
+#    org.springframework.jdbc.core.JdbcTemplate: TRACE
 
-logging:
-  level:
-    org.springframework.jdbc.core.JdbcTemplate: TRACE
+#debug: true
+logging.level.ru.javanatnat.sitesearchengine.service.*: DEBUG

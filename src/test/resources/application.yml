@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+application:
+  sites:
+    -
+      url: https://lenta.ru
+      name: Lenta.ru
+    -
+      url: https://skillbox.ru
+      name: Skillbox
+
+logging:
+  level:
+    org.springframework.jdbc.core.JdbcTemplate: TRACE

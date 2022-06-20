@@ -10,8 +10,8 @@ public class Page {
     private final Long id;
     private final Long siteId;
     private final String path;
-    private final Integer codeResponse;
-    private final String content;
+    private Integer codeResponse;
+    private String content;
 
     @PersistenceConstructor
     public Page(Long id, Long siteId, String path, Integer codeResponse, String content) {
@@ -46,6 +46,14 @@ public class Page {
         return content;
     }
 
+    public void setCodeResponse(int codeResponse) {
+        this.codeResponse = codeResponse;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "Page{" +
@@ -53,7 +61,6 @@ public class Page {
                 ", siteId=" + siteId +
                 ", path='" + path + '\'' +
                 ", codeResponse=" + codeResponse +
-                ", content='" + content.substring(0, 100) + '\'' +
                 '}';
     }
 

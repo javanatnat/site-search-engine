@@ -5,10 +5,7 @@ import org.apache.lucene.analysis.tokenattributes.*;
 import ru.javanatnat.sitesearchengine.luceneanalyze.CustomLangAnalyzer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LangParser {
     private static final String FIELD = "field";
@@ -62,7 +59,8 @@ public class LangParser {
             tokenStream.reset();
             while (tokenStream.incrementToken()) {
                 String word = charTermAttribute.toString();
-                String source = text.substring(offset.startOffset(), offset.endOffset());
+                String source = text.substring(offset.startOffset(), offset.endOffset())
+                        .toLowerCase(Locale.ROOT);
 
                 result.computeIfAbsent(word, key -> new ArrayList<>()).add(source);
             }

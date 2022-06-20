@@ -1,6 +1,6 @@
 package ru.javanatnat.sitesearchengine.model;
 
-public enum SiteStatusType {
+public enum SiteStatus {
     INDEXING,
     INDEXED,
     FAILED
